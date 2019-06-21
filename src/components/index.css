@@ -139,7 +139,11 @@ nav ul li a.current{
     border-bottom: 2px solid rgb(255, 145, 0);
 }
 .linkStyle:hover{
+    cursor: pointer;
     font-weight: bolder;
+}
+.foo-overlay{
+background: none;
 }
 .button{
     background-color: #F4A41D;
@@ -204,8 +208,8 @@ color: black;
     display: block;
     width: 30px;
     height: 30px;
-    border-bottom: 5px solid #06A8FF;
-    border-right: 5px solid #06A8FF;
+    border-bottom: 5px solid #D98E2B;
+    border-right: 5px solid #D98E2B;
     transform: rotate(45deg);
     margin: -10px;
     animation: animate 2s infinite;

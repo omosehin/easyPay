@@ -9,11 +9,13 @@ import {
   scrollSpy,
   scroller
 } from "react-scroll";
-import Fade from 'react-reveal/Fade';
-import Slide from 'react-reveal/Slide';
-import LightSpeed from 'react-reveal/LightSpeed';
+import { AnimateOnChange, HideUntilLoaded } from "react-animation";
+import Popup from "reactjs-popup";
+import Fade from "react-reveal/Fade";
+import Slide from "react-reveal/Slide";
+import LightSpeed from "react-reveal/LightSpeed";
 import "./index.css";
-import DrawerToggleButton from './DrawerToggleButton'
+import DrawerToggleButton from "./DrawerToggleButton";
 import Background from "../assets/background3.png";
 import iconCard1 from "../assets/iconcard1.svg";
 import iconCard2 from "../assets/iconcard2.png";
@@ -27,8 +29,8 @@ import phoneShoe from "../assets/IMAGE.png";
 import foodimage from "../assets/foodimage.png";
 import phones from "../assets/phones.png";
 import meat from "../assets/meat.png";
-import easypaybg  from "../assets/easypay logo2.svg";
-import mainShoe  from "../assets/mainShoe.png";
+import easypaybg from "../assets/easypay logo2.svg";
+import mainShoe from "../assets/mainShoe.png";
 import watch from "../assets/mainWatch.png";
 import headset from "../assets/mainHeadset.png";
 import smartphone from "../assets/mainPhone.png";
@@ -37,109 +39,153 @@ import easypayImage from "../assets/easypayImage.png";
 import shopeasyPhone from "../assets/shopeasyPhone.png";
 import IMAGE from "../assets/IMAGE.png";
 import dispatchLogo from "../assets/measyImage.png";
-import Popsup from "./Popsup";
+
+const words = [
+  "building",
+  "creating",
+  "shaping",
+];
+
+const colours=[
+  '#F4A41D','#C62D42','#F9F9F9'
+]
+const randomColor = colours[Math.floor(Math.random() *3)];
 const Home = () => {
-  
-const [showPhone, setShowPhone] = useState(false)
-const [open, setOpen] = useState(false)
-const [backgroundColor, setBackgroundColor] = useState('toolbar_navigation')
-const [logo, setLogo] = useState(easypaybg)
-const [showPops, setShowPops] = useState(false)
-const [navOpen, setNavOpen] = useState(false)
+  const [showPhone, setShowPhone] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [backgroundColor, setBackgroundColor] = useState("toolbar_navigation");
+  const [logo, setLogo] = useState(easypaybg);
+  const [showPops, setShowPops] = useState(false);
+  const [navOpen, setNavOpen] = useState(false);
+  const [openLogo, setOpenLogo] = useState(false);
+  const [current, setCurrent] = useState(0);
 
-const openToggle = () => {
-  setNavOpen(!navOpen);
-};
 
-useEffect(() => {
-  setNavOpen(navOpen);
-}, [navOpen]);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (current === words.length - 1) {
+        setCurrent(0);
+      } else {
+        setCurrent(current + 1);
+      }
+    }, 2000);
+    return () => {
+      clearInterval(interval);
+    };
+  });
 
-const handleClose = () => {
-  setNavOpen(false);
-};
-useEffect(() => {
-const listScrollEvent =e=>{
-  if(window.scrollY < 500){
-    setBackgroundColor('toolbar_navigation')
-    setLogo(easypaybg)
-  }
-  if(window.scrollY >400){
-    setBackgroundColor('toolbar_navigationB')
-    setLogo(easypaybg)
-  }
-  if(window.scrollY > 1300){
-    setBackgroundColor('toolbar_navigation')
-  }
-  if(window.scrollY > 1700){
-    setBackgroundColor('toolbar_navigationB')
-  }
-  // if(window.scrollY > 1900){
-  //   setBackgroundColor('toolbar_navigation')
-  //   setLogo(dispatchLogo)
-  // }
-  if(window.scrollY > 6500){
-    setBackgroundColor('toolbar_navigationB')
-  }
-  if(window.scrollY > 8300){
-    setBackgroundColor('toolbar_navigation')
-  }
-  if(window.scrollY > 9500){
-    setBackgroundColor('toolbar_navigationB')
-  }
-}
-window.addEventListener("scroll", listScrollEvent);
-
-  return () => {
-window.removeEventListener(listScrollEvent)
+  const openToggle = () => {
+    setNavOpen(!navOpen);
   };
-}, [])
 
-useEffect(() => {
-  const listenScrollEvent = e => {
-    if (window.scrollY > 500) {
-      setShowPhone(true);
-      setOpen(true)
+  useEffect(() => {
+    setNavOpen(navOpen);
+  }, [navOpen]);
 
-    } else {
-      setShowPhone(false);
-    }
+  const handleClose = () => {
+    setNavOpen(false);
   };
-  window.addEventListener("scroll", listenScrollEvent);
+  useEffect(() => {
+    const listScrollEvent = e => {
+      if (window.scrollY < 500) {
+        setBackgroundColor("toolbar_navigation");
+        setLogo(easypaybg);
+      }
+      if (window.scrollY > 350) {
+        setBackgroundColor("toolbar_navigationB");
+        setLogo(easypaybg);
+      }
+      if (window.scrollY > 1300) {
+        setBackgroundColor("toolbar_navigation");
+      }
+      if (window.scrollY > 1650) {
+        setBackgroundColor("toolbar_navigationB");
+      }
+      if (window.scrollY > 3000) {
+        setBackgroundColor("toolbar_navigation");
+        setLogo(dispatchLogo);
+        setOpenLogo(true);
+      }
+      if (window.scrollY > 3500) {
+        setBackgroundColor("toolbar_navigationB");
+        setLogo(dispatchLogo);
+      }
+      if (window.scrollY > 5000) {
+        setBackgroundColor("toolbar_navigationB");
+        setLogo(dispatchLogo);
+      }
+      if (window.scrollY > 6000) {
+        setBackgroundColor("toolbar_navigation");
+      }
+      if (window.scrollY > 6500) {
+        setBackgroundColor("toolbar_navigationB");
+      }
+      if (window.scrollY > 8000) {
+        setBackgroundColor("toolbar_navigation");
+      }
+      if (window.scrollY > 8500) {
+        setBackgroundColor("toolbar_navigationB");
+      }
+    };
+    window.addEventListener("scroll", listScrollEvent);
 
-  return () => {
-    window.removeEventListener("scroll", listenScrollEvent);
+    return () => {
+      window.removeEventListener(listScrollEvent);
+    };
+  }, []);
+
+  useEffect(() => {
+    const listenScrollEvent = e => {
+      if (window.scrollY > 500) {
+        setShowPhone(true);
+        setOpen(true);
+      } else {
+        setShowPhone(false);
+      }
+    };
+    window.addEventListener("scroll", listenScrollEvent);
+
+    return () => {
+      window.removeEventListener("scroll", listenScrollEvent);
+    };
+  }, [open]);
+
+  useEffect(() => {
+    setOpen(true);
+    return () => {};
+  }, [open]);
+
+  const gotoDownArrow = () => {
+    scroll.scrollTo(2000);
+    setOpen(true);
   };
-}, [open]);
 
-useEffect(() => {
-  setOpen(true)
-  return () => {
-  };
-}, [open])
-
-   const gotoDownArrow=()=>{
-    scroll.scrollTo(2000)  
-    setOpen(true)    
-    }
-
-    useEffect(() => {
-      const interval = setInterval(()=>{
-        setShowPops(true)
-      },2000)
-      return () => {
-        clearInterval(interval)
-      };
-    })
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setShowPops(true);
+    }, 8000);
+    return () => {
+      clearInterval(interval);
+    };
+  }, []);
 
   return (
     <div>
       <main className="mt-0">
-        {Popsup}
-      {navOpen === true && (
-            <header className="mobileToolbar">
-              <nav className="mobileToolbar__navigation" onClick={handleClose}>
-                <div className="mobileToolbar_navigation-items">
+        {showPops === true && (
+          <Popup
+            open={true}
+            position="bottom left"
+            defaultOpen={showPops}
+            className='foo'
+          >
+            <div>Check out our store</div>
+          </Popup>
+        )}
+        {navOpen === true && (
+          <header className="mobileToolbar">
+            <nav className="mobileToolbar__navigation" onClick={handleClose}>
+              <div className="mobileToolbar_navigation-items">
                 <ul>
                   <li>
                     <Link
@@ -220,116 +266,110 @@ useEffect(() => {
                     </Link>
                   </li>
                 </ul>
-                </div>
-              </nav>
-            </header>
-          )}
-      <header className="toolbar">
-            <nav className={backgroundColor} >
-              <div className="toolbar_logo">
-                <a href="/">
-                <img src={logo} alt="easypay" width='100'/>
-
-                </a>
-              </div>
-              <div className="spacer" />
-              <div className="toolbar_navigation-items">
-                <ul>
-                  <li>
-                    <Link
-                      activeClass="active"
-                      className="test1 linkStyle"
-                      to="test1"
-                      spy={true}
-                      smooth={true}
-                      duration={500}
-                    >
-                      Home
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      activeClass="active"
-                      className="test2 linkStyle"
-                      to="test2"
-                      spy={true}
-                      smooth={true}
-                      duration={500}
-                    >
-                      Easypay
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      activeClass="active"
-                      className="test3 linkStyle"
-                      to="test3"
-                      spy={true}
-                      smooth={true}
-                      duration={500}
-                    >
-                      Shopeasy
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      activeClass="active"
-                      className="test4 linkStyle"
-                      to="test4"
-                      spy={true}
-                      smooth={true}
-                      duration={500}
-                    >
-                      Chopameasy
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      activeClass="active"
-                      className="test5 linkStyle"
-                      to="test5"
-                      spy={true}
-                      smooth={true}
-                      duration={500}
-                    >
-                      Easydispatch
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      activeClass="active"
-                      className="test6 linkStyle button"
-                      to="test6"
-                      spy={true}
-                      smooth={true}
-                      duration={500}
-                    >
-                      CREATE ACCOUNT
-                    </Link>
-                  </li>
-                </ul>
-              </div>
-              <div className="toolbar__toggle-button">
-                {<DrawerToggleButton click={openToggle} />}
               </div>
             </nav>
           </header>
-        <Jumbotron
-          fluid
-          className="topJumbotron"
-        >
+        )}
+        <header className="toolbar">
+          <nav className={backgroundColor}>
+            <div className="toolbar_logo">
+              <a href="/">
+                <img src={logo} alt="easypay" width="100" />
+              </a>
+            </div>
+            <div className="spacer" />
+            <div className="toolbar_navigation-items">
+              <ul>
+                <li>
+                  <Link
+                    activeClass="active"
+                    className="test1 linkStyle"
+                    to="test1"
+                    spy={true}
+                    smooth={true}
+                    duration={500}
+                  >
+                    Home
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    activeClass="active"
+                    className="test2 linkStyle"
+                    to="test2"
+                    spy={true}
+                    smooth={true}
+                    duration={500}
+                  >
+                    Easypay
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    activeClass="active"
+                    className="test3 linkStyle"
+                    to="test3"
+                    spy={true}
+                    smooth={true}
+                    duration={500}
+                  >
+                    Shopeasy
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    activeClass="active"
+                    className="test4 linkStyle"
+                    to="test4"
+                    spy={true}
+                    smooth={true}
+                    duration={500}
+                  >
+                    Chopameasy
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    activeClass="active"
+                    className="test5 linkStyle"
+                    to="test5"
+                    spy={true}
+                    smooth={true}
+                    duration={500}
+                  >
+                    Easydispatch
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    activeClass="active"
+                    className="test6 linkStyle button"
+                    to="test6"
+                    spy={true}
+                    smooth={true}
+                    duration={500}
+                  >
+                    CREATE ACCOUNT
+                  </Link>
+                </li>
+              </ul>
+            </div>
+            <div className="toolbar__toggle-button">
+              {<DrawerToggleButton click={openToggle} />}
+            </div>
+          </nav>
+        </header>
+        <Jumbotron fluid className="topJumbotron">
           <Element name="test1" className="element">
             <Container className="firstContainer">
               <Row className="topHeader">
                 <Col lg="6" className="topColumn1 firstHeaderText">
-                  <h1 className="topColumn1Text">We are building</h1>
+                  <h1 className="topColumn1Text">We are <AnimateOnChange style={{color:randomColor}}>{words[current]}</AnimateOnChange></h1>
                   <h1 className="topColumn1Text">the future.</h1>
                   <p className="topColumn1Text">See some of our Product</p>
                 </Col>
 
-                <Col lg="6" className="topColumn1">
-                
-                </Col>
+                <Col lg="6" className="topColumn1" />
               </Row>
             </Container>
           </Element>
@@ -338,12 +378,13 @@ useEffect(() => {
         <Jumbotron className="secJumbotron">
           <Row>
             <Col className="aboutUs">
-              <h1 className='EasyINC'>About EasyINC</h1>
+              <h1 className="EasyINC">About EasyINC</h1>
             </Col>
           </Row>
           <Col>
             <p className="test2Paragraph EasyINC">
-              Easy Inc is a <em>combination</em> of upsteam commerce solutions <br />
+              Easy Inc is a <em>combination</em> of upsteam commerce solutions{" "}
+              <br />
               and downstream logistical service that’s technologically
               aggregated <br />
               to provide a seamless automated delivery experience.
@@ -351,10 +392,10 @@ useEffect(() => {
           </Col>
           <Row className="chevronIcon">
             <Col>
-            <div class="arrow" onClick={gotoDownArrow}>
-                <span></span>
-                <span></span>
-            </div>
+              <div class="arrow" onClick={gotoDownArrow}>
+                <span />
+                <span />
+              </div>
             </Col>
           </Row>
         </Jumbotron>
@@ -362,9 +403,12 @@ useEffect(() => {
           <Jumbotron className="thirdJumbotron">
             <Row>
               <Col lg="6" className="test3Column">
-                <h2 className="text-white ml-5"> easypay is free and easy to {" "}</h2>
+                <h2 className="text-white ml-5">
+                  {" "}
+                  easypay is free and easy to{" "}
+                </h2>
                 <h2 className="text-light ml-5">use payment application. </h2>
-                <p className="text-light ml-5 mt-3 " id="byline" >
+                <p className="text-light ml-5 mt-3 " id="byline">
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                 </p>
               </Col>
@@ -374,28 +418,28 @@ useEffect(() => {
                   <Row>
                     <Col lg="12">
                       <div className="thirdJumbotronFeatures">
-                        <h2 className='EasyINC'>Features you’ll love</h2>
+                        <h2 className="EasyINC">Features you’ll love</h2>
                         <p>
-                          Lorem ipsum dolor sit amet, consectetur adipiscing <br/>
+                          Lorem ipsum dolor sit amet, consectetur adipiscing{" "}
+                          <br />
                           elit Ut pretium pretium tempor.
                         </p>
                       </div>
                     </Col>
                   </Row>
                   <Row className="featuresCard">
-
                     <Col lg="4" className="colCard">
-                    <LightSpeed left collapse when={open===true}>
-                      <Card className=" shadow p-3 card1">
-                        <div>
-                          <img src={iconCard1} alt="icon1" width="80" />
-                        </div>
-                        <h4 className="mt-5">Simple & interactive design</h4>
-                        <p className="cardParagraph text-muted">
-                          The fluid design is easy to use and keeps you glued to
-                          your EasyDispatch apps
-                        </p>
-                      </Card>
+                      <LightSpeed left collapse when={open === true}>
+                        <Card className=" shadow p-3 card1">
+                          <div>
+                            <img src={iconCard1} alt="icon1" width="80" />
+                          </div>
+                          <h4 className="mt-5">Simple & interactive design</h4>
+                          <p className="cardParagraph text-muted">
+                            The fluid design is easy to use and keeps you glued
+                            to your EasyDispatch apps
+                          </p>
+                        </Card>
                       </LightSpeed>
                     </Col>
                     <Col lg="4" className="colCard">
@@ -432,7 +476,7 @@ useEffect(() => {
         <Jumbotron className="TopeasyPayJumbotron">
           <Container>
             <Row>
-              <Col sm='12' lg="6">
+              <Col sm="12" lg="6">
                 <h1 className="easyTitle mb-3">easypay</h1>
                 <p className="text-justify easypayParagraph mt-3 EasyINC">
                   is a complete payment solution that bridges the gap between
@@ -442,8 +486,12 @@ useEffect(() => {
                   experience.
                 </p>
               </Col>
-              <Col sm='12' lg="6">
-              <img src={easypayImage} alt="easypayImage" className='easyLogo'/>
+              <Col sm="12" lg="6">
+                <img
+                  src={easypayImage}
+                  alt="easypayImage"
+                  className="easyLogo"
+                />
               </Col>
             </Row>
           </Container>
@@ -452,79 +500,86 @@ useEffect(() => {
         <Jumbotron className="simpleBgImage">
           <Container>
             <Row>
-              <Col sm='12'lg='6'>
-              </Col>
-              <Col sm="12" lg='6'>
-                <h1 className="easyTitle EasyINC">Simple & interactive design</h1>
+              <Col sm="12" lg="6" />
+              <Col sm="12" lg="6">
+                <h1 className="easyTitle EasyINC">
+                  Simple & interactive design
+                </h1>
                 <p className="text-justify easypayParagraph EasyINC payPara">
                   The fluid design is easy to use and keeps you glued to your
                   easypay mobile application.
                 </p>
               </Col>
-              
             </Row>
-            <Row className='EasyPaySocailmedia'>
-            <Col sm="12" className='EasyPay'>
+            <Row className="EasyPaySocailmedia">
+              <Col sm="12" className="EasyPay">
                 <h1 className="easyTitle mt-3 text-white">Pay with EasyPay.</h1>
                 <p className="text-justify text-white futurepayment">
                   Basically if you want to experience the future of payment NOW.
                 </p>
               </Col>
-              <div className='d-flex'>
-              <div lg="4">
-                <img
-                  src={Playstore}
-                  alt="playstore"
-                  width="100"
-                  className="float-left Playstore"
-                />
+              <div className="d-flex">
+                <div lg="4">
+                  <img
+                    src={Playstore}
+                    alt="playstore"
+                    width="100"
+                    className="float-left Playstore"
+                  />
+                </div>
+                <div lg="4">
+                  <img
+                    src={google}
+                    alt="google"
+                    width="100"
+                    className="float-left"
+                  />
+                </div>
+                {/* <div class ='spacer' /> */}
+                <div lg="4">
+                  <img
+                    src={easypaybg}
+                    alt="easypaybg"
+                    width="100"
+                    className="float-right logoRight"
+                  />
+                </div>
               </div>
-              <div lg="4">
-                <img
-                  src={google}
-                  alt="google"
-                  width="100"
-                  className="float-left"
-                />
-              </div>
-              {/* <div class ='spacer' /> */}
-              <div lg="4">
-                <img
-                  src={easypaybg}
-                  alt="easypaybg"
-                  width="100"
-                  className="float-right logoRight"
-                />
-              </div>
-              </div>              
-              
             </Row>
           </Container>
         </Jumbotron>
         <Jumbotron className="easyPayJumbotron">
-          <Container>
-           
-          </Container>
+          <Container />
         </Jumbotron>
 
         <Jumbotron className="easyPayJumbotron mb-5">
           <Container>
             <Row>
-              <Col sm="12" className='phoneWatch'>
-                <img src={headset} alt="headset" width='100' className ='headset'/>
-                <img src={watch} alt="watch" width='100' className ='watch'/>
-                <img src={phoneShoe} alt="phoneShoe" className ='phoneShoe'/>
-                <img src={mainShoe} alt="showPlay" className ='shoe'/>
-                <img src={smartphone} alt="smartphone" className ='smartphone'/>
-
+              <Col sm="12" className="phoneWatch">
+                <img
+                  src={headset}
+                  alt="headset"
+                  width="100"
+                  className="headset"
+                />
+                <img src={watch} alt="watch" width="100" className="watch" />
+                <img src={phoneShoe} alt="phoneShoe" className="phoneShoe" />
+                <img src={mainShoe} alt="showPlay" className="shoe" />
+                <img src={smartphone} alt="smartphone" className="smartphone" />
               </Col>
-              </Row>
+            </Row>
 
-              <Row>
-              <Col sm='12' className='buySell'>
-              <h1 className ='easyColor chopeasyText'>We simply call it the best way to buy and</h1>
-                <h1 className ='easyColor chopeasyText'>sell from the comfort of where your are!</h1>
-                <p className='text-muted chopeasyText'>Shopping just made easy with shopeasy.</p>
+            <Row>
+              <Col sm="12" className="buySell">
+                <h1 className="easyColor chopeasyText">
+                  We simply call it the best way to buy and
+                </h1>
+                <h1 className="easyColor chopeasyText">
+                  sell from the comfort of where your are!
+                </h1>
+                <p className="text-muted chopeasyText">
+                  Shopping just made easy with shopeasy.
+                </p>
               </Col>
             </Row>
           </Container>
@@ -534,11 +589,15 @@ useEffect(() => {
           <Jumbotron className="topshopeasy">
             <Container>
               <Row>
-                <Col sm="12" sm='6'>
-                 <img src={shopeasyPhone} alt="shopeasyPhone" className ='shopeasyPhone'/>
-                  </Col>
-                
-                <Col sm="12" sm='6'>
+                <Col sm="12" sm="6">
+                  <img
+                    src={shopeasyPhone}
+                    alt="shopeasyPhone"
+                    className="shopeasyPhone"
+                  />
+                </Col>
+
+                <Col sm="12" sm="6">
                   <h5 className="easyTitle shopeasyFont">shopeasy</h5>
                   <p className="text-justify text-muted easypayParagraph mt-3 shopeasyFontletter">
                     Shopeasy is a Mobile App/Platform that provides an online
@@ -552,12 +611,13 @@ useEffect(() => {
           </Jumbotron>
         </Element>
 
-
         <Jumbotron className="paymentJumbotron">
           <Container>
-            <Row className='paymentRow'>
-              <Col lg="6" sm='12' className='paymentTopCol'>
-                <h5 className="easyTitle proceedtoPayment ">Proceed to payment</h5>
+            <Row className="paymentRow">
+              <Col lg="6" sm="12" className="paymentTopCol">
+                <h5 className="easyTitle proceedtoPayment ">
+                  Proceed to payment
+                </h5>
                 <p className="text-justify text-muted easypayParagraph shopeasyFontletter mt-3">
                   Seamlessly target value-added networks through timely
                   e-business. Competently reinvent sustainable action items via
@@ -567,57 +627,57 @@ useEffect(() => {
                 </p>
               </Col>
 
-              <Col lg="6" sm='12'>
-              {showPhone===true &&<Fade  left effect="fadeInUp"  duration={1000} forever ={true}>
-               <img src={IMAGE} alt="IMAGE" className='IMAGE'/>
-               </Fade>}
+              <Col lg="6" sm="12">
+                {showPhone === true && (
+                  <Fade left effect="fadeInUp" duration={1000} forever={true}>
+                    <img src={IMAGE} alt="IMAGE" className="IMAGE" />
+                  </Fade>
+                )}
               </Col>
             </Row>
           </Container>
         </Jumbotron>
 
-
         <Jumbotron className="convinceJumbotron">
           <Container>
-            <Row className='convinceRow'>
-              <Col lg="6" sm='6'>
-                <span 
-                  className="convince"
-                >
-                  Convince,
-                </span>
-                <span ml-3 className="signUp" style ={{color:'#1A81D6'}}>
+            <Row className="convinceRow">
+              <Col lg="6" sm="6">
+                <span className="convince">Convince,</span>
+                <span ml-3 className="signUp" style={{ color: "#1A81D6" }}>
                   Sign up
                 </span>
               </Col>
-              <Col lg='12' sm='8' md={{ size: 6, offset: 1 }} className='Download'>
-                      <Row>
-                        <Col lg='6' className='text-white playGoogle playGoogleText '>Download to start <strong>Shopping</strong>  : </Col>
-                        <Col lg='3'>
-                 <a href="">     
-                <img
-                  src={google}
-                  alt="google"
-                  width="200"
-                  className="float-left playGoogle"
-                />
-                </a>  
-
-                        </Col>
-                        <Col lg='3'>
-                        <a href="">     
-
-                <img
-                  src={Playstore}
-                  alt="playstore"
-                  width="200"
-                  className="float-left playGoogle"
-                />
-                </a>  
-
-              
-                        </Col>
-                      </Row>
+              <Col
+                lg="12"
+                sm="8"
+                md={{ size: 6, offset: 1 }}
+                className="Download"
+              >
+                <Row>
+                  <Col lg="6" className="text-white playGoogle playGoogleText ">
+                    Download to start <strong>Shopping</strong> :{" "}
+                  </Col>
+                  <Col lg="3">
+                    <a href="">
+                      <img
+                        src={google}
+                        alt="google"
+                        width="200"
+                        className="float-left playGoogle"
+                      />
+                    </a>
+                  </Col>
+                  <Col lg="3">
+                    <a href="">
+                      <img
+                        src={Playstore}
+                        alt="playstore"
+                        width="200"
+                        className="float-left playGoogle"
+                      />
+                    </a>
+                  </Col>
+                </Row>
               </Col>
             </Row>
           </Container>
@@ -625,34 +685,38 @@ useEffect(() => {
 
         <Element name="test4" className="element">
           <Jumbotron className="chopmeasy deliciousMealImg">
-            <Container className=''>
-              <Row className='chopmeasyText'>
-                <Col sm="12" className='chopmeasyText'>
-                  <h1 className ='meal deliciousMeal'>Get your delicious meal</h1>
-                  <h1 className ='meal deliciousMeal'>at your fingertip with chopameasy.</h1>
+            <Container className="">
+              <Row className="chopmeasyText">
+                <Col sm="12" className="chopmeasyText">
+                  <h1 className="meal deliciousMeal">
+                    Get your delicious meal
+                  </h1>
+                  <h1 className="meal deliciousMeal">
+                    at your fingertip with chopameasy.
+                  </h1>
                   <p>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                   </p>
                 </Col>
               </Row>
 
-
               <Row>
                 <Row className="meatContainer">
-                  <Col lg="6" sm="12" className='meatBox'>
+                  <Col lg="6" sm="12" className="meatBox">
                     <img src={meat} alt="meat" className="meat meatPlace" />
                   </Col>
                   <Col lg="6" sm="12">
                     <h1 className="easyTitle">chopameasy</h1>
                     <p className="text-justify shopeasyFontletter easypayParagraph mt-5 ">
-                      Online mobile food app that connects food <br/> vendors 
-                      restaurateurs with potential <br/>customers. Users have the
-                      opportunity to view<br/> and order from a variety of food menus
-                      based <br/>on preferences or convenience.
+                      Online mobile food app that connects food <br /> vendors
+                      restaurateurs with potential <br />
+                      customers. Users have the opportunity to view
+                      <br /> and order from a variety of food menus based <br />
+                      on preferences or convenience.
                     </p>
                   </Col>
 
-                  <Col lg="12" sm='12' className='getDelicious'>
+                  <Col lg="12" sm="12" className="getDelicious">
                     <div className="text-left">
                       <h1 className="">Get Delicious with ChopamEasy.</h1>
                       <p className="">
@@ -660,7 +724,7 @@ useEffect(() => {
                       </p>
                     </div>
                   </Col>
-                  <Col lg="6" sm='12' className='mt-3'>
+                  <Col lg="6" sm="12" className="mt-3">
                     <img
                       src={Playstore}
                       alt="playstore"
@@ -668,7 +732,7 @@ useEffect(() => {
                       className="float-left"
                     />
                   </Col>
-                  <Col lg="6" sm='12' className='mt-3'>
+                  <Col lg="6" sm="12" className="mt-3">
                     <img
                       src={chopameasy}
                       alt="chopameasy"
@@ -686,7 +750,9 @@ useEffect(() => {
           <Jumbotron className="dispatchJumbotron">
             <Row className=" align-items-center dispatchRow">
               <Col lg="6">
-                <h1 className="text-light logisticText">Online logistic platform that manages on-demand</h1>
+                <h1 className="text-light logisticText">
+                  Online logistic platform that manages on-demand
+                </h1>
                 <p className="text-light logisticPara">
                   Lorem ipsum dolor sit amet, consectetur elit.
                 </p>
@@ -709,7 +775,7 @@ useEffect(() => {
                   </Col>
                 </div>
               </Col>
-              <Col lg="6" sm='12'>
+              <Col lg="6" sm="12">
                 <img
                   src={easydispatchImag}
                   alt="easydispatchImag"
@@ -723,11 +789,13 @@ useEffect(() => {
           <Jumbotron className="downloadJumbotron">
             <Row className="">
               <Col lg="12">
-                <h1 className='doMoreText'>Do more with our app</h1>
+                <h1 className="doMoreText">Do more with our app</h1>
                 <p className="text-mute doMorePara">
                   Lorem ipsum dolor sit amet, consectetur adipiscing
                 </p>
-                <p className="text-mute doMorePara">elit. Ut pretium pretium tempor.</p>
+                <p className="text-mute doMorePara">
+                  elit. Ut pretium pretium tempor.
+                </p>
               </Col>
               <Container>
                 <Row className="align-items-center">
@@ -747,26 +815,34 @@ useEffect(() => {
                       <br />
                       orthogonal growth strategies.
                     </p>
-                    <hr className='hrlineDispatch'/>
-
+                    <hr className="hrlineDispatch" />
                   </Col>
                   <Col lg="6" sm="12">
                     <img src={imagedownload} alt="imagedownload" width="400" />
                   </Col>
-                  
                 </Row>
               </Container>
               <Container>
                 <Row className="align-items-center">
-                <Col lg="6" sm="12">
-                {showPhone===true && <Slide left effect="fadeInUp"  duration={3000} forever ={true}>
-                <img src={imagedownload} alt="imagedownload" width="400" />
-
-                </Slide>}
+                  <Col lg="6" sm="12">
+                    {showPhone === true && (
+                      <Slide
+                        left
+                        effect="fadeInUp"
+                        duration={3000}
+                        forever={true}
+                      >
+                        <img
+                          src={imagedownload}
+                          alt="imagedownload"
+                          width="400"
+                        />
+                      </Slide>
+                    )}
                   </Col>
                   <Col lg="6" sm="12">
                     <h3 className="text-justify ml-5 Create_Account">
-                    Request a Rider
+                      Request a Rider
                     </h3>
                     <p className="text-justify ml-5 Create_AccountText">
                       {" "}
@@ -780,9 +856,7 @@ useEffect(() => {
                       <br />
                       orthogonal growth strategies.
                     </p>
-                    <hr className='hrlineDispatch'/>
-
-
+                    <hr className="hrlineDispatch" />
                   </Col>
                 </Row>
               </Container>
@@ -790,7 +864,7 @@ useEffect(() => {
                 <Row className="align-items-center">
                   <Col lg="6" sm="12">
                     <h3 className="text-justify ml-5 Create_Account">
-                    Get Paired with a rider
+                      Get Paired with a rider
                     </h3>
                     <p className="text-justify ml-5 Create_AccountText">
                       {" "}
@@ -804,73 +878,89 @@ useEffect(() => {
                       <br />
                       orthogonal growth strategies.
                     </p>
-                    <hr className='hrlineDispatch'/>
-
+                    <hr className="hrlineDispatch" />
                   </Col>
                   <Col lg="6" sm="12">
-                  <Slide bottom  duration={3000} forever ={true}>
-                    <img src={imagedownload} alt="imagedownload" width="400" />
-                  </Slide>
+                    <Slide bottom duration={3000} forever={true}>
+                      <img
+                        src={imagedownload}
+                        alt="imagedownload"
+                        width="400"
+                      />
+                    </Slide>
                   </Col>
-                  
                 </Row>
               </Container>
               <Container>
                 <Row>
-                  <Col lg='12'>
-                      <h1 className='Create_Account'>We simply call it the best way to buy and</h1>
-                      <h1 className='Create_Account'>sell from the comfort of where your are!</h1>
+                  <Col lg="12">
+                    <h1 className="Create_Account">
+                      We simply call it the best way to buy and
+                    </h1>
+                    <h1 className="Create_Account">
+                      sell from the comfort of where your are!
+                    </h1>
                   </Col>
                 </Row>
               </Container>
             </Row>
           </Jumbotron>
         </Element>
-        
-        <Container className='footer'>
-          <Row>
-          <Col lg='3' sm='6' className=''>
-            <div>
-                    <ul className='list-unstyled text-justify border-right'>
-                      <li className='font-weight-bold'>NCK Technologies</li>
-                      <li>1221, Paelon Memorial Hospital</li>
-                      <li>hello@easydispatch.ng</li>
-                      <li>+234 (0) 816 281 8379</li>
-                    </ul>
-            </div>
-            </Col>
-            <Col lg='3' sm='6'>
-            <div>
-                    <ul className='list-unstyled text-justify border-right'>
-                      <li className='font-weight-bold'>Innovation One Technologies</li>
-                      <li>1221, Paelon Memorial Hospital</li>
-                      <li>hello@easydispatch.ng</li>
-                      <li>+234 (0) 816 281 8379</li>
-                    </ul>
-            </div>
-            </Col>
-            <Col lg='3' sm='6'>
-            <div>
-                    <ul className='list-unstyled text-justify border-right'>
-                      <li className='font-weight-bold'>Legal</li>
-                      <li>1221, Paelon Memorial Hospital</li>
-                      <li>hello@easydispatch.ng</li>
-                      <li>+234 (0) 816 281 8379</li>
-                    </ul>
-            </div>
-            </Col>
-            <Col lg='3' sm='6'>
 
-            <div>
-                    <ul className='list-unstyled text-justify'>
-                      <li className='font-weight-bold'>Connect</li>
-                      <li>1221, Paelon Memorial Hospital</li>
-                      <li>hello@easydispatch.ng</li>
-                      <li>+234 (0) 816 281 8379</li>
-                    </ul>
-            </div>
+        <Container className="footer">
+          <Row>
+            <Col lg="3" sm="6" xs="6" className="">
+              <div>
+                <ul className="list-unstyled text-justify border-right">
+                  <li className=" listTitle">NCK Technologies</li>
+                  <li classNmae="footerlistText">
+                    1221, Paelon Memorial Hospital
+                  </li>
+                  <li classNmae="footerlistText">hello@easydispatch.ng</li>
+                  <li classNmae="footerlistText">+234 (0) 816 281 8379</li>
+                </ul>
+              </div>
+            </Col>
+            <Col lg="3" sm="6" xs="6">
+              <div>
+                <ul className="list-unstyled text-justify border-right">
+                  <li className=" listTitle">Innovation One Technologies</li>
+                  <li classNmae="footerlistText">
+                    1221, Paelon Memorial Hospital
+                  </li>
+                  <li classNmae="footerlistText">hello@easydispatch.ng</li>
+                  <li classNmae="footerlistText">+234 (0) 816 281 8379</li>
+                </ul>
+              </div>
+            </Col>
+            <Col lg="3" sm="6" xs="6">
+              <div>
+                <ul className="list-unstyled text-justify border-right">
+                  <li className="listTitle">Legal</li>
+                  <li classNmae="footerlistText">
+                    1221, Paelon Memorial Hospital
+                  </li>
+                  <li classNmae="footerlistText">hello@easydispatch.ng</li>
+                  <li classNmae="footerlistText">+234 (0) 816 281 8379</li>
+                </ul>
+              </div>
+            </Col>
+            <Col lg="3" sm="6" xs="6">
+              <div>
+                <ul className="list-unstyled text-justify">
+                  <li className="listTitle">Connect</li>
+                  <li classNmae="footerlistText">
+                    1221, Paelon Memorial Hospital
+                  </li>
+                  <li classNmae="footerlistText">hello@easydispatch.ng</li>
+                  <li classNmae="footerlistText">+234 (0) 816 281 8379</li>
+                </ul>
+              </div>
             </Col>
           </Row>
-
         </Container>
-      </m
+      </main>
+    </div>
+  );
+};
+export default Home;
