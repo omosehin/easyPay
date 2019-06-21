@@ -15,6 +15,7 @@
 .navBg{
     background-color: red;
 }
+
 .toolbar_navigationB{
     background-color: black;
     display: flex;
@@ -32,6 +33,10 @@
     position: fixed;
     z-index: 10;
 }
+
+.listColor{
+    color: yellow;
+}
 .toolbar_logo{
     margin: 1.2rem;
 }
@@ -43,10 +48,7 @@
 .spacer{
     flex: 1;
 }
-nav ul li a.current{
-    background-color: black;
-    color: white;
-}
+
 .toolbar_navigation-items ul{
     list-style: none;
     padding: 0;
@@ -120,12 +122,19 @@ nav ul li a.current{
     margin-top: 100px;
     text-align: left;
 }
+.listTitle{
+    font-weight: bold !important;
+}
 
 .firstHeaderText{
     position: relative;
 }
 .topColumn1Text{
     color: white;
+}
+/* slider style */
+li button{
+    display: none;
 }
 .innerText{
     position: absolute;

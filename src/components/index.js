@@ -12,6 +12,8 @@ import {
 import { AnimateOnChange, HideUntilLoaded } from "react-animation";
 import Popup from "reactjs-popup";
 import Fade from "react-reveal/Fade";
+import Slider from "react-slick";
+
 import Slide from "react-reveal/Slide";
 import LightSpeed from "react-reveal/LightSpeed";
 import "./index.css";
@@ -39,17 +41,26 @@ import easypayImage from "../assets/easypayImage.png";
 import shopeasyPhone from "../assets/shopeasyPhone.png";
 import IMAGE from "../assets/IMAGE.png";
 import dispatchLogo from "../assets/measyImage.png";
+import easydispatch_logo from "../assets/easydispatch_logo.svg";
+import measyImage from "../assets/measyImage.png";
+import easypay_logo from "../assets/easypay logo2.svg";
 
-const words = [
-  "building",
-  "creating",
-  "shaping",
-];
+const settings = {
+  dots: true,
+  infinite: true,
+  speed: 4000,
+  slidesToShow: 3,
+  slidesToScroll: 3,
+  autoplay: true,
+  infinite: true,
+  autoplaySpeed: 800,
+  arrows:false,
+  dotsClass:'none'
+};
+const words = ["building", "creating", "shaping"];
 
-const colours=[
-  '#F4A41D','#C62D42','#F9F9F9'
-]
-const randomColor = colours[Math.floor(Math.random() *3)];
+const colours = ["#F4A41D", "#C62D42", "#F9F9F9"];
+const randomColor = colours[Math.floor(Math.random() * 3)];
 const Home = () => {
   const [showPhone, setShowPhone] = useState(false);
   const [open, setOpen] = useState(false);
@@ -59,7 +70,6 @@ const Home = () => {
   const [navOpen, setNavOpen] = useState(false);
   const [openLogo, setOpenLogo] = useState(false);
   const [current, setCurrent] = useState(0);
-
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -123,8 +133,13 @@ const Home = () => {
       if (window.scrollY > 8000) {
         setBackgroundColor("toolbar_navigation");
       }
+      if (window.scrollY > 8000) {
+        setLogo(easydispatch_logo)
+      }
       if (window.scrollY > 8500) {
         setBackgroundColor("toolbar_navigationB");
+        
+
       }
     };
     window.addEventListener("scroll", listScrollEvent);
@@ -155,6 +170,12 @@ const Home = () => {
     return () => {};
   }, [open]);
 
+  
+
+  const gotoTopArrow = () => {
+    scroll.scrollToTop();
+  };
+
   const gotoDownArrow = () => {
     scroll.scrollTo(2000);
     setOpen(true);
@@ -177,7 +198,7 @@ const Home = () => {
             open={true}
             position="bottom left"
             defaultOpen={showPops}
-            className='foo'
+            className="foo"
           >
             <div>Check out our store</div>
           </Popup>
@@ -364,12 +385,37 @@ const Home = () => {
             <Container className="firstContainer">
               <Row className="topHeader">
                 <Col lg="6" className="topColumn1 firstHeaderText">
-                  <h1 className="topColumn1Text">We are <AnimateOnChange style={{color:randomColor}}>{words[current]}</AnimateOnChange></h1>
+                  <h1 className="topColumn1Text">
+                    We are{" "}
+                    <AnimateOnChange style={{ color: randomColor }}>
+                      {words[current]}
+                    </AnimateOnChange>
+                  </h1>
                   <h1 className="topColumn1Text">the future.</h1>
                   <p className="topColumn1Text">See some of our Product</p>
                 </Col>
 
                 <Col lg="6" className="topColumn1" />
+                <Col lg="12">
+                  <Slider {...settings}>
+                    <div>
+                      <img src={dispatchLogo} alt="dispatchLogon" width="200" />
+                    </div>
+                    <div>
+                      <img
+                        src={easydispatch_logo}
+                        alt="dispatchLogon2"
+                        width="200"
+                      />
+                    </div>
+                    <div>
+                    <img src={measyImage} alt="dispatchLogo3" width="200" />
+                    </div>
+                    <div>
+                    <img src={easypay_logo} alt="dispatchLogo3" width="100" />
+                    </div>
+                  </Slider>
+                </Col>
               </Row>
             </Container>
           </Element>
@@ -957,6 +1003,9 @@ const Home = () => {
                 </ul>
               </div>
             </Col>
+          </Row>
+          <Row>
+            <Col sm ='12' className='text-right' onClick={gotoTopArrow}>Back To Top</Col>
           </Row>
         </Container>
       </main>
