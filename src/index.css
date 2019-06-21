@@ -1,13 +1,78 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+body{
+  color: #182538;
+  background-image: url(./assets/ArtboardBody.png);
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+  background-repeat:no-repeat;
+  background-clip: border-box;
+}
+@font-face
+{
+  font-family:myBoosterFont;
+  src:
+  url('./fonts/Booster/BoosterNextFY-Black.otf')
+};
+@font-face
+{
+  font-family:myBoosterFontBold;
+  src:
+  url('./fonts/Booster/BoosterNextFY-Bold.otf')
+};
+
+@font-face
+{
+  font-family:myBoosterFontMedium;
+  src:
+  url('./fonts/Booster/BoosterNextFY-Medium.otf')
+};
+@font-face
+{
+  font-family:myBoosterFontThin;
+  src:
+  url('./fonts/Booster/BoosterNextFY-Medium.otf')
+};
+
+html{
+  /* scroll-behavior: smooth; */
+  min-height: 100%;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+
+p{
+  font-family:url(./fonts/Booster/BoosterNextFY-Regular.otf);
+  font-size: 17px;
+  font-weight: 500;
+  color:black;
+  letter-spacing: 0.05rem;
+}
+
+h1{
+  font-family: myBoosterFont;
+  font-weight: 800;
+  color: black;
+}
+h2{
+  font-family: myBoosterFont;
+  font-weight: 500;
+  color: black;
+  letter-spacing: 0.1rem;
+}
+h4{
+  font-family: url(./fonts/Booster/BoosterNextFY-Regular.otf) !important;
+  font-size:15px !important;
+  font-weight: bolder !important;
+}
+
+h6{
+  font-family: myBoosterFontBold;
+  color:black;
+  font-size: 40px;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Lato', sans-serif;
+  min-width: 400px;
 }
