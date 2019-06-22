@@ -2,12 +2,10 @@ import React, { useState, useEffect } from "react";
 import { Jumbotron, Container, Row, Col, Button, Card } from "reactstrap";
 import {
   Link,
-  DirectLink,
   Element,
   Events,
   animateScroll as scroll,
   scrollSpy,
-  scroller
 } from "react-scroll";
 import { AnimateOnChange, HideUntilLoaded } from "react-animation";
 import Popup from "reactjs-popup";
@@ -52,7 +50,6 @@ const settings = {
   slidesToShow: 3,
   slidesToScroll: 3,
   autoplay: true,
-  infinite: true,
   autoplaySpeed: 400,
   arrows:false,
   dotsClass:'none',
@@ -204,9 +201,9 @@ const Home = () => {
             <div>Check out our store</div>
           </Popup>
         )}
-        {navOpen === true && (
+         {navOpen === true && (
           <header className="mobileToolbar">
-            <nav className="mobileToolbar__navigation" onClick={handleClose}>
+            <nav className="mobileToolbar__navigation" onClick={handleClose} >
               <div className="mobileToolbar_navigation-items">
                 <ul>
                   <li>
@@ -291,7 +288,7 @@ const Home = () => {
               </div>
             </nav>
           </header>
-        )}
+        )} 
         <header className="toolbar">
           <nav className={backgroundColor}>
             <div className="toolbar_logo">
@@ -385,7 +382,7 @@ const Home = () => {
           <Element name="test1" className="element">
             <Container className="firstContainer">
               <Row className="topHeader">
-                <Col lg="6" className="topColumn1 firstHeaderText">
+                <Col lg="6" xs='12' className="topColumn1 firstHeaderText">
                   <h1 className="topColumn1Text">
                     We are{" "}
                     <AnimateOnChange style={{ color: randomColor }}>
@@ -400,20 +397,20 @@ const Home = () => {
                 <Col lg="12">
                   <Slider {...settings}>
                     <div>
-                      <img src={dispatchLogo} alt="dispatchLogon" width="200" />
+                      <img src={dispatchLogo} alt="dispatchLogon"  className='scrollingLogo' />
                     </div>
                     <div>
                       <img
                         src={easydispatch_logo}
                         alt="dispatchLogon2"
-                        width="200"
+                       className='scrollingLogo'
                       />
                     </div>
                     <div>
-                    <img src={measyImage} alt="dispatchLogo3" width="200" />
+                    <img src={measyImage} alt="dispatchLogo3"  className='scrollingLogo'/>
                     </div>
-                    <div>
-                    <img src={easypay_logo} alt="dispatchLogo3" width="100" />
+                    <div> 
+                    <img src={easypay_logo} alt="dispatchLogo3" className='scrollingLogo scrollingEasyPay' />
                     </div>
                   </Slider>
                 </Col>
@@ -450,12 +447,12 @@ const Home = () => {
           <Jumbotron className="thirdJumbotron">
             <Row>
               <Col lg="6" className="test3Column">
-                <h2 className="text-white ml-5">
+                <h2 className="text-white ml-5 thirdJumbotronText">
                   {" "}
                   easypay is free and easy to{" "}
                 </h2>
-                <h2 className="text-light ml-5">use payment application. </h2>
-                <p className="text-light ml-5 mt-3 " id="byline">
+                <h2 className="text-light ml-5 thirdJumbotronText">use payment application. </h2>
+                <p className="text-light ml-5 mt-3 thirdJumbotronText " id="byline">
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                 </p>
               </Col>
@@ -481,7 +478,7 @@ const Home = () => {
                           <div>
                             <img src={iconCard1} alt="icon1" width="80" />
                           </div>
-                          <h4 className="mt-5">Simple & interactive design</h4>
+                          <h4 className="cardTitle">Simple & interactive design</h4>
                           <p className="cardParagraph text-muted">
                             The fluid design is easy to use and keeps you glued
                             to your EasyDispatch apps
@@ -494,7 +491,7 @@ const Home = () => {
                         <div>
                           <img src={iconCard2} alt="icon2" width="80" />
                         </div>
-                        <h4 className="mt-5">Seamless Payment Process</h4>
+                        <h4 className=" cardTitle">Seamless Payment Process</h4>
                         <p className="cardParagraph text-muted">
                           easypay mobile application provides an unforgettable
                           user experience.
@@ -506,7 +503,7 @@ const Home = () => {
                         <div>
                           <img src={iconCard3} alt="icon3" width="80" />
                         </div>
-                        <h4 className="mt-5">Secure Transactions</h4>
+                        <h4 className=" cardTitle">Secure Transactions</h4>
                         <p className="cardParagraph text-muted">
                           easypay users can make online transactionsbeing
                           confident that their funds are safe.
@@ -525,7 +522,7 @@ const Home = () => {
             <Row>
               <Col sm="12" lg="6">
                 <h1 className="easyTitle mb-3">easypay</h1>
-                <p className="text-justify easypayParagraph mt-3 EasyINC">
+                <p className="text-justify easypayParagraph mt-3 EasyINC payPara">
                   is a complete payment solution that bridges the gap between
                   online and peer to peer remote purchasers with subsequent
                   business/merchants, by breaking through the traditional
@@ -561,7 +558,7 @@ const Home = () => {
             <Row className="EasyPaySocailmedia">
               <Col sm="12" className="EasyPay">
                 <h1 className="easyTitle mt-3 text-white">Pay with EasyPay.</h1>
-                <p className="text-justify text-white futurepayment">
+                <p className="text-justify text-white futurepayment payPara">
                   Basically if you want to experience the future of payment NOW.
                 </p>
               </Col>
@@ -701,11 +698,11 @@ const Home = () => {
                 className="Download"
               >
                 <Row>
-                  <Col lg="6" className="text-white playGoogle playGoogleText ">
+                  <Col lg="6" sm='12' className="text-white playGoogle playGoogleText ">
                     Download to start <strong>Shopping</strong> :{" "}
                   </Col>
-                  <Col lg="3">
-                    <a href="">
+                  <Col lg="3" sm='6' xs='6'>
+                    <a href="/">
                       <img
                         src={google}
                         alt="google"
@@ -714,8 +711,8 @@ const Home = () => {
                       />
                     </a>
                   </Col>
-                  <Col lg="3">
-                    <a href="">
+                  <Col lg="3" sm='6' xs='6'>
+                    <a href="/">
                       <img
                         src={Playstore}
                         alt="playstore"
@@ -750,10 +747,10 @@ const Home = () => {
               <Row>
                 <Row className="meatContainer">
                   <Col lg="6" sm="12" className="meatBox">
-                    <img src={meat} alt="meat" className="meat meatPlace" />
+                    {/* <img src={meat} alt="meat" className="meat meatPlace" /> */}
                   </Col>
                   <Col lg="6" sm="12">
-                    <h1 className="easyTitle">chopameasy</h1>
+                    <h1 className="easyTitle mt-3">chopameasy</h1>
                     <p className="text-justify shopeasyFontletter easypayParagraph mt-5 ">
                       Online mobile food app that connects food <br /> vendors
                       restaurateurs with potential <br />
@@ -834,7 +831,7 @@ const Home = () => {
         </Element>
         <Element name="test6" className="element">
           <Jumbotron className="downloadJumbotron">
-            <Row className="">
+            <Row className=" doMoreRow">
               <Col lg="12">
                 <h1 className="doMoreText">Do more with our app</h1>
                 <p className="text-mute doMorePara">
@@ -847,10 +844,10 @@ const Home = () => {
               <Container>
                 <Row className="align-items-center">
                   <Col lg="6" sm="12">
-                    <h3 className="text-justify ml-5 Create_Account ">
+                    <h3 className="text-justify ml-5 Create_Account getPaired ">
                       Download and Create Account
                     </h3>
-                    <p className="text-justify ml-5 Create_AccountText">
+                    <p className="text-justify ml-5 Create_AccountText doMorePara">
                       {" "}
                       Seamlessly target value-added networks through timely{" "}
                       <br />
@@ -891,7 +888,7 @@ const Home = () => {
                     <h3 className="text-justify ml-5 Create_Account">
                       Request a Rider
                     </h3>
-                    <p className="text-justify ml-5 Create_AccountText">
+                    <p className="text-justify ml-5 Create_AccountText doMorePara">
                       {" "}
                       Seamlessly target value-added networks through timely{" "}
                       <br />
@@ -910,10 +907,10 @@ const Home = () => {
               <Container>
                 <Row className="align-items-center">
                   <Col lg="6" sm="12">
-                    <h3 className="text-justify ml-5 Create_Account">
+                    <h3 className="text-justify ml-5 Create_Account getPaired">
                       Get Paired with a rider
                     </h3>
-                    <p className="text-justify ml-5 Create_AccountText">
+                    <p className="text-justify ml-5 Create_AccountText doMorePara">
                       {" "}
                       Seamlessly target value-added networks through timely{" "}
                       <br />
@@ -940,11 +937,11 @@ const Home = () => {
               </Container>
               <Container>
                 <Row>
-                  <Col lg="12">
-                    <h1 className="Create_Account">
+                  <Col lg="12" className='Create_Account'>
+                    <h1 className="Create_AccountText ">
                       We simply call it the best way to buy and
                     </h1>
-                    <h1 className="Create_Account">
+                    <h1 className="Create_AccountText">
                       sell from the comfort of where your are!
                     </h1>
                   </Col>
