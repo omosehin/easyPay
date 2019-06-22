@@ -3,9 +3,8 @@ body{
   overflow-y: scroll;
 overflow-x: hidden;
   color: #182538;
-  background-color: black;
-  /* background-image: url(./assets/ArtboardBody.png); */
-  /* background-size: cover; */
+  background-image: url(./assets/ArtboardBody.png);
+  background-size: cover;
   width: 100%;
   height: 100%;
   /* background-repeat:no-repeat; */
