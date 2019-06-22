@@ -53,11 +53,12 @@ const settings = {
   slidesToScroll: 3,
   autoplay: true,
   infinite: true,
-  autoplaySpeed: 800,
+  autoplaySpeed: 400,
   arrows:false,
-  dotsClass:'none'
+  dotsClass:'none',
+  draggable:false
 };
-const words = ["building", "creating", "shaping"];
+const words = ["building", "creating", "shaping",'moving into'];
 
 const colours = ["#F4A41D", "#C62D42", "#F9F9F9"];
 const randomColor = colours[Math.floor(Math.random() * 3)];
@@ -196,7 +197,7 @@ const Home = () => {
         {showPops === true && (
           <Popup
             open={true}
-            position="bottom left"
+            position="top left"
             defaultOpen={showPops}
             className="foo"
           >
@@ -380,7 +381,7 @@ const Home = () => {
             </div>
           </nav>
         </header>
-        <Jumbotron fluid className="topJumbotron">
+        <Jumbotron fluid className="topJumbotron"  onClick={handleClose}>
           <Element name="test1" className="element">
             <Container className="firstContainer">
               <Row className="topHeader">
