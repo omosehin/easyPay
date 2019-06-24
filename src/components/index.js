@@ -5,13 +5,13 @@ import {
   Element,
   Events,
   animateScroll as scroll,
-  scrollSpy,
+  scrollSpy
 } from "react-scroll";
 import { AnimateOnChange, HideUntilLoaded } from "react-animation";
-import Popup from "reactjs-popup";
 import Fade from "react-reveal/Fade";
 import Slider from "react-slick";
-
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import Slide from "react-reveal/Slide";
 import LightSpeed from "react-reveal/LightSpeed";
 import "./index.css";
@@ -51,11 +51,11 @@ const settings = {
   slidesToScroll: 3,
   autoplay: true,
   autoplaySpeed: 400,
-  arrows:false,
-  dotsClass:'none',
-  draggable:false
+  arrows: false,
+  dotsClass: "none",
+  draggable: false
 };
-const words = ["building", "creating", "shaping",'moving into'];
+const words = ["building", "creating", "shaping", "moving into"];
 
 const colours = ["#F4A41D", "#C62D42", "#F9F9F9"];
 const randomColor = colours[Math.floor(Math.random() * 3)];
@@ -132,12 +132,10 @@ const Home = () => {
         setBackgroundColor("toolbar_navigation");
       }
       if (window.scrollY > 8000) {
-        setLogo(easydispatch_logo)
+        setLogo(easydispatch_logo);
       }
       if (window.scrollY > 8500) {
         setBackgroundColor("toolbar_navigationB");
-        
-
       }
     };
     window.addEventListener("scroll", listScrollEvent);
@@ -168,8 +166,6 @@ const Home = () => {
     return () => {};
   }, [open]);
 
-  
-
   const gotoTopArrow = () => {
     scroll.scrollToTop();
   };
@@ -182,28 +178,23 @@ const Home = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setShowPops(true);
-    }, 8000);
+      toast.dismiss();
+    }, 9000);
     return () => {
       clearInterval(interval);
     };
-  }, []);
+  }, [showPops]);
 
   return (
     <div>
       <main className="mt-0">
-        {showPops === true && (
-          <Popup
-            open={true}
-            position="top left"
-            defaultOpen={showPops}
-            className="foo"
-          >
-            <div>Check out our store</div>
-          </Popup>
-        )}
-         {navOpen === true && (
+        <ToastContainer />
+        {/* {showPops === true && (
+          toast("Check out our social media")
+        )} */}
+        {navOpen === true && (
           <header className="mobileToolbar">
-            <nav className="mobileToolbar__navigation" onClick={handleClose} >
+            <nav className="mobileToolbar__navigation" onClick={handleClose}>
               <div className="mobileToolbar_navigation-items">
                 <ul>
                   <li>
@@ -288,7 +279,7 @@ const Home = () => {
               </div>
             </nav>
           </header>
-        )} 
+        )}
         <header className="toolbar">
           <nav className={backgroundColor}>
             <div className="toolbar_logo">
@@ -378,11 +369,11 @@ const Home = () => {
             </div>
           </nav>
         </header>
-        <Jumbotron fluid className="topJumbotron"  onClick={handleClose}>
+        <Jumbotron fluid className="topJumbotron" onClick={handleClose}>
           <Element name="test1" className="element">
             <Container className="firstContainer">
               <Row className="topHeader">
-                <Col lg="6" xs='12' className="topColumn1 firstHeaderText">
+                <Col lg="6" xs="12" className="topColumn1 firstHeaderText">
                   <h1 className="topColumn1Text">
                     We are{" "}
                     <AnimateOnChange style={{ color: randomColor }}>
@@ -394,23 +385,36 @@ const Home = () => {
                 </Col>
 
                 <Col lg="6" className="topColumn1" />
-                <Col lg="12">
-                  <Slider {...settings}>
+                <Col lg="12" className="scrollDiv">
+                  <Slider {...settings} style={{background:'black'}}>
                     <div>
-                      <img src={dispatchLogo} alt="dispatchLogon"  className='scrollingLogo' />
+                      <img
+                        src={dispatchLogo}
+                        alt="dispatchLogon"
+                        className="scrollingLogo"
+                      />
                     </div>
+
                     <div>
                       <img
                         src={easydispatch_logo}
                         alt="dispatchLogon2"
-                       className='scrollingLogo'
+                        className="scrollingLogo"
                       />
                     </div>
                     <div>
-                    <img src={measyImage} alt="dispatchLogo3"  className='scrollingLogo'/>
+                      <img
+                        src={measyImage}
+                        alt="dispatchLogo3"
+                        className="scrollingLogo"
+                      />
                     </div>
-                    <div> 
-                    <img src={easypay_logo} alt="dispatchLogo3" className='scrollingLogo scrollingEasyPay' />
+                    <div>
+                      <img
+                        src={easypay_logo}
+                        alt="dispatchLogo3"
+                        className="scrollingLogo scrollingEasyPay"
+                      />
                     </div>
                   </Slider>
                 </Col>
@@ -451,8 +455,13 @@ const Home = () => {
                   {" "}
                   easypay is free and easy to{" "}
                 </h2>
-                <h2 className="text-light ml-5 thirdJumbotronText">use payment application. </h2>
-                <p className="text-light ml-5 mt-3 thirdJumbotronText " id="byline">
+                <h2 className="text-light ml-5 thirdJumbotronText">
+                  use payment application.{" "}
+                </h2>
+                <p
+                  className="text-light ml-5 mt-3 thirdJumbotronText "
+                  id="byline"
+                >
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                 </p>
               </Col>
@@ -478,7 +487,9 @@ const Home = () => {
                           <div>
                             <img src={iconCard1} alt="icon1" width="80" />
                           </div>
-                          <h4 className="cardTitle">Simple & interactive design</h4>
+                          <h4 className="cardTitle">
+                            Simple & interactive design
+                          </h4>
                           <p className="cardParagraph text-muted">
                             The fluid design is easy to use and keeps you glued
                             to your EasyDispatch apps
@@ -698,10 +709,14 @@ const Home = () => {
                 className="Download"
               >
                 <Row>
-                  <Col lg="6" sm='12' className="text-white playGoogle playGoogleText ">
+                  <Col
+                    lg="6"
+                    sm="12"
+                    className="text-white playGoogle playGoogleText "
+                  >
                     Download to start <strong>Shopping</strong> :{" "}
                   </Col>
-                  <Col lg="3" sm='6' xs='6'>
+                  <Col lg="3" sm="6" xs="6">
                     <a href="/">
                       <img
                         src={google}
@@ -711,7 +726,7 @@ const Home = () => {
                       />
                     </a>
                   </Col>
-                  <Col lg="3" sm='6' xs='6'>
+                  <Col lg="3" sm="6" xs="6">
                     <a href="/">
                       <img
                         src={Playstore}
@@ -937,7 +952,7 @@ const Home = () => {
               </Container>
               <Container>
                 <Row>
-                  <Col lg="12" className='Create_Account'>
+                  <Col lg="12" className="Create_Account">
                     <h1 className="Create_AccountText ">
                       We simply call it the best way to buy and
                     </h1>
@@ -1003,7 +1018,9 @@ const Home = () => {
             </Col>
           </Row>
           <Row>
-            <Col sm ='12' className='text-right' onClick={gotoTopArrow}>Back To Top</Col>
+            <Col sm="12" className="text-right" onClick={gotoTopArrow}>
+              Back To Top
+            </Col>
           </Row>
         </Container>
       </main>
