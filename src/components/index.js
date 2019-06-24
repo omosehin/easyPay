@@ -28,7 +28,6 @@ import chopameasy from "../assets/chopameasy.png";
 import phoneShoe from "../assets/IMAGE.png";
 // import foodimage from "../assets/foodimage.png";
 // import phones from "../assets/phones.png";
-import meat from "../assets/meat.png";
 import easypaybg from "../assets/easypay logo2.svg";
 import mainShoe from "../assets/mainShoe.png";
 import watch from "../assets/mainWatch.png";
