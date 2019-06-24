@@ -14,7 +14,7 @@ import Slide from "react-reveal/Slide";
 import LightSpeed from "react-reveal/LightSpeed";
 import "./index.css";
 import DrawerToggleButton from "./DrawerToggleButton";
-import Background from "../assets/background3.png";
+// import Background from "../assets/background3.png";
 import iconCard1 from "../assets/iconcard1.svg";
 import iconCard2 from "../assets/iconcard2.png";
 import iconCard3 from "../assets/iconcard3.svg";
@@ -24,28 +24,27 @@ import easydispatchImag from "../assets/easydispatchImag.png";
 import imagedownload from "../assets/imagedownload.png";
 import chopameasy from "../assets/chopameasy.png";
 import phoneShoe from "../assets/IMAGE.png";
-// import foodimage from "../assets/foodimage.png";
-// import phones from "../assets/phones.png";
+import chopameasyg from "../assets/chopameasyg.png";
 import easypaybg from "../assets/easypay logo2.svg";
 import mainShoe from "../assets/mainShoe.png";
 import watch from "../assets/mainWatch.png";
 import headset from "../assets/mainHeadset.png";
 import smartphone from "../assets/mainPhone.png";
-import blackPhone from "../assets/blackPhone.png";
 import easypayImage from "../assets/easypayImage.png";
 import shopeasyPhone from "../assets/shopeasyPhone.png";
 import IMAGE from "../assets/IMAGE.png";
 import dispatchLogo from "../assets/measyImage.png";
 import easydispatch_logo from "../assets/easydispatch_logo.svg";
-import measyImage from "../assets/measyImage.png";
+import easypaybg2 from "../assets/easypaybg2.png";
+import dipatchbg from "../assets/dipatchbg.png";
 import easypay_logo from "../assets/easypay logo2.svg";
 
 const settings = {
   dots: true,
   infinite: true,
   speed: 4000,
-  slidesToShow: 3,
-  slidesToScroll: 3,
+  slidesToShow: 2,
+  slidesToScroll: 2,
   autoplay: true,
   autoplaySpeed: 400,
   arrows: false,
@@ -184,7 +183,6 @@ const Home = () => {
   return (
     <div>
       <main className="mt-0">
-
         {navOpen === true && (
           <header className="mobileToolbar">
             <nav className="mobileToolbar__navigation" onClick={handleClose}>
@@ -379,32 +377,25 @@ const Home = () => {
 
                 <Col lg="6" className="topColumn1" />
                 <Col lg="12" className="scrollDiv">
-                  <Slider {...settings} style={{background:'black'}}>
-                    <div>
-                      <img
-                        src={dispatchLogo}
-                        alt="dispatchLogon"
-                        className="scrollingLogo"
-                      />
-                    </div>
+                  <Slider {...settings} style={{ background: "black" }}>
 
                     <div>
                       <img
-                        src={easydispatch_logo}
-                        alt="dispatchLogon2"
+                        src={dipatchbg}
+                        alt="dipatchbg"
                         className="scrollingLogo"
                       />
                     </div>
                     <div>
                       <img
-                        src={measyImage}
-                        alt="dispatchLogo3"
+                        src={easypaybg2}
+                        alt="easypaybg2"
                         className="scrollingLogo"
                       />
                     </div>
                     <div>
                       <img
-                        src={easypay_logo}
+                        src={chopameasyg}
                         alt="dispatchLogo3"
                         className="scrollingLogo scrollingEasyPay"
                       />
