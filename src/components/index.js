@@ -10,8 +10,6 @@ import {
 import { AnimateOnChange, HideUntilLoaded } from "react-animation";
 import Fade from "react-reveal/Fade";
 import Slider from "react-slick";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import Slide from "react-reveal/Slide";
 import LightSpeed from "react-reveal/LightSpeed";
 import "./index.css";
@@ -177,7 +175,6 @@ const Home = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setShowPops(true);
-      toast.dismiss();
     }, 9000);
     return () => {
       clearInterval(interval);
@@ -187,10 +184,7 @@ const Home = () => {
   return (
     <div>
       <main className="mt-0">
-        <ToastContainer />
-        {/* {showPops === true && (
-          toast("Check out our social media")
-        )} */}
+
         {navOpen === true && (
           <header className="mobileToolbar">
             <nav className="mobileToolbar__navigation" onClick={handleClose}>
