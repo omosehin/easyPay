@@ -422,7 +422,7 @@ span .fa-chevron-down {
 }
 .EasyPay {
   position: absolute;
-  top: 50;
+  top: -150px;
 }
 .EasyPaySocailmedia {
   position: absolute;
@@ -708,6 +708,10 @@ text-align:left;
   margin-top: 20px;
 }
 @media (max-width: 768px) {
+  .EasyPay {
+    position: absolute;
+    top: -17px;
+  }
   .getPaired{
     margin-top:30px !important;
   }
@@ -928,7 +932,7 @@ text-align:left;
   }
   .logoRight {
     position: absolute;
-    left: 205px;
+    right: 5px
   }
   .topColumn1Text {
     font-size: 15px;

@@ -667,11 +667,9 @@ const Home = () => {
               </Col>
 
               <Col lg="6" sm="12">
-                {showPhone === true && (
-                  <Fade left effect="fadeInUp" duration={1000} forever={true}>
-                    <img src={IMAGE} alt="IMAGE" className="IMAGE" />
-                  </Fade>
-                )}
+                
+                  
+                    <img src={IMAGE} alt="IMAGE" className="IMAGE" />                
               </Col>
             </Row>
           </Container>
