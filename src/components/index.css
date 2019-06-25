@@ -85,10 +85,10 @@
   z-index: 2;
   background-position: 50% 91%;
 }
-.logoRight {
+/* .logoRight {
   position: absolute;
   right: -157px;
-}
+} */
 .Download {
   margin-top: 15px;
   width: 100%;
@@ -406,6 +406,9 @@ span .fa-chevron-down {
 .IMAGE {
   width: 200px;
 }
+.EasyRow{
+  margin-top: 188px;
+}
 
 .simpleBgImage {
   background-image: url(../assets/bglayerBigscreen.png);
@@ -420,13 +423,13 @@ span .fa-chevron-down {
   box-shadow: -11px -62px 108px -21px rgba(255, 255, 255, 1);
   position: relative;
 }
-.EasyPay {
+/* .EasyPay {
   position: absolute;
   top: -150px;
-}
+} */
 .EasyPaySocailmedia {
   position: absolute;
-  bottom: 0;
+  bottom:60px;
 }
 .easyPayJumbotron {
   background-color: white !important;
@@ -694,6 +697,9 @@ text-align:left;
   padding: 0;
 }
 
+.filler{
+  flex-grow: 1;
+}
 .mobileToolbar_navigation-items a {
   text-decoration: none;
   color: black;
@@ -708,9 +714,11 @@ text-align:left;
   margin-top: 20px;
 }
 @media (max-width: 768px) {
+  .EasyCo{
+    margin-top: 121px !important;
+  }
   .EasyPay {
-    position: absolute;
-    top: -17px;
+    margin-right: 5px !important;
   }
   .getPaired{
     margin-top:30px !important;
@@ -930,10 +938,9 @@ text-align:left;
   .futurepayment {
     font-size: 12px;
   }
-  .logoRight {
-    position: absolute;
-    right: 5px
-  }
+  /* .logoRight {
+    text-align: right;
+  } */
   .topColumn1Text {
     font-size: 15px;
     letter-spacing: 1px;

@@ -550,14 +550,16 @@ const Home = () => {
                 </p>
               </Col>
             </Row>
-            <Row className="EasyPaySocailmedia">
-              <Col sm="12" className="EasyPay">
+
+            <Row className="EasyRow">
+              <Col sm="12" className="EasyPay EasyCo">
                 <h1 className="easyTitle mt-3 text-white">Pay with EasyPay.</h1>
                 <p className="text-justify text-white futurepayment payPara">
                   Basically if you want to experience the future of payment NOW.
                 </p>
               </Col>
-              <div className="d-flex">
+              <Col sm="12">
+              <div className="d-flex mt-5">
                 <div lg="4">
                   <img
                     src={Playstore}
@@ -574,16 +576,18 @@ const Home = () => {
                     className="float-left"
                   />
                 </div>
-                {/* <div class ='spacer' /> */}
+                <div class="filler"></div>
                 <div lg="4">
                   <img
                     src={easypaybg}
                     alt="easypaybg"
                     width="100"
-                    className="float-right logoRight"
+                    className="float-right logoRight "
                   />
                 </div>
               </div>
+              </Col>
+             
             </Row>
           </Container>
         </Jumbotron>
