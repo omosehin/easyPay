@@ -763,7 +763,7 @@ const Home = () => {
 
                   <Col lg="12" sm="12" className="getDelicious">
                     <div className="text-left">
-                      <h1 className="">Get Delicious with ChopamEasy.</h1>
+                      <h1 className="getDelicious2">Get Delicious with ChopamEasy.</h1>
                       <p className="">
                         Buy delicious meal with ease using chopameasy app
                       </p>
@@ -774,7 +774,7 @@ const Home = () => {
                       src={Playstore}
                       alt="playstore"
                       width="200"
-                      className="float-left"
+                      className="float-left Play_store"
                     />
                   </Col>
                   <Col lg="6" sm="12" className="mt-3">
@@ -936,7 +936,7 @@ const Home = () => {
                   </Col>
                 </Row>
               </Container>
-              <Container>
+              <Container className = 'removeLast'>
                 <Row>
                   <Col lg="12" className="Create_Account">
                     <h1 className="Create_AccountText ">

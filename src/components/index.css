@@ -1000,6 +1000,20 @@ ul.none{
 }
 @media (max-width: 548px) {
   /* slider style */
+  .removeLast{
+    display:none;
+  }
+  .chopameasysocial{
+    display:none;
+  }
+  .Play_store{
+    display: none;
+  }
+  .getDelicious2{
+    font-size: 15px;
+font-weight: 60px !important; 
+ }
+
 
   .slick-list ul li {
     display: none !important;
@@ -1097,4 +1111,20 @@ ul.none{
     position: relative;
     margin-bottom: 100px;
   }
+}
+
+
+@media screen 
+  and (device-width: 360px) 
+  and (device-height: 640px)
+  and (-webkit-min-device-pixel-ratio : 4) 
+  and (-webkit-device-pixel-ratio : 4)
+  and (orientation: portrait) {
+    .removeLast{
+      display:none;
+    }
+    .getDelicious{
+      display: none;
+    }
+
 }
